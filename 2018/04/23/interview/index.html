@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta name="description" content="解题 官方文档 https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i ##1.@autoreleasrPool 的释放时机？  参考 http://aevit.xyz/20">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇blog">
-<meta property="og:url" content="https://github.com/dev518/2018/04/09/welcome/index.html">
+<meta property="og:title" content="iOS面试">
+<meta property="og:url" content="https://github.com/dev518/2018/04/23/interview/index.html">
 <meta property="og:site_name" content="魔都漂流">
-<meta property="og:description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta property="og:description" content="解题 官方文档 https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i ##1.@autoreleasrPool 的释放时机？  参考 http://aevit.xyz/20">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-09T09:57:03.000Z">
+<meta property="og:updated_time" content="2018-04-23T10:01:28.673Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇blog">
-<meta name="twitter:description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta name="twitter:title" content="iOS面试">
+<meta name="twitter:description" content="解题 官方文档 https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i ##1.@autoreleasrPool 的释放时机？  参考 http://aevit.xyz/20">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/dev518/2018/04/09/welcome/"/>
+  <link rel="canonical" href="https://github.com/dev518/2018/04/23/interview/"/>
 
 
 
 
 
-  <title>第一篇blog | 魔都漂流</title>
+  <title>iOS面试 | 魔都漂流</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/04/09/welcome/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/04/23/interview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="King Wu">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第一篇blog</h1>
+          <h1 class="post-title" itemprop="name headline">iOS面试</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-09T17:44:03+08:00">
-                2018-04-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T18:00:58+08:00">
+                2018-04-23
               </time>
             
 
@@ -299,8 +299,23 @@
       
 
       
-        <p>这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。</p>
-
+        <h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><p> 官方文档 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i</a></p>
+<p>##1.@autoreleasrPool 的释放时机？<br>  参考 <a href="http://aevit.xyz/2017/03/12/iOS-autorelease/" target="_blank" rel="noopener">http://aevit.xyz/2017/03/12/iOS-autorelease/</a><br>  大致 使用@autoreleasrPool 会在大括号结束释放，不使用就在该runloop结束释放</p>
+<p>  这2者有冲突</p>
+<p>  Autorelease Pool 是与线程一一映射的，这就是说一个 autoreleased 的对象的延迟释放是发生在它所在的 Autorelease Pool 对应的线程上的。因此，在方法返回值的这个场景中，如果 Autorelease Pool 的 drain 方法没有在接收方和提供方交接的过程中触发，那么 autoreleased 对象是不会被释放的（除非严重错乱的使用线程）。<br>通常，Autorelease Pool 的销毁会被安排在很好的时间点上：<br>        Run Loop 会在每次 loop 到尾部时销毁 Autorelease Pool。<br>        GCD 的 dispatched blocks 会在一个 Autorelease Pool 的上下文中执行，这个 Autorelease Pool 不时的就被销毁了（依赖于实现细节）。NSOperationQueue 也是类似。<br>        其他线程则会各自对他们对应的 Autorelease Pool 的生命周期负责。<br>至此，我们知道了为何方法返回值需要 autorelease 机制，以及这一机制是如何保障接收方能从提供方那里获得依然鲜活的对象。<br>关于 Autorelease Pool 可以看一下这几篇文章：<br>        iOS 中的 Autorelease Pool<br>        黑幕背后的Autorelease<br>        Objective-C Autorelease Pool 的实现原理</p>
+<p>##2.自动引用计（ARC）数应该遵循的原则?</p>
+<p>##3.ARC 自动内存管理的原则<br>ARC 模式下，还有一些需要注意的规则：<br>        不能显式使用 retain/release/retainCount/autorelease。<br>        不能使用 NSAllocateObject/NSDeallocateObject。<br>        需要遵守内存管理的方法命名规则。在 ARC 模式和 MRC 模式下，以 alloc/new/copy/mutableCopy 开头的方法在返回对象时都必须返回给调用方所应当持有的对象。在 ARC 模式下，追加一条：以 init 开头的方法必须是实例方法并且必须要返回对象。返回的对象应为 id 类型或声明该方法的类的对象类型，或是该类的超类型或子类型。该返回的对象并不注册到 Autorelease Pool 中，基本上只是对 alloc 方法返回值的对象进行初始化处理并返回该对象。需要注意的是：- (void)initialize; 方法虽然是以 init 开头但是并不包含在上述规则中。<br>        不要显式调用 dealloc。<br>        使用 @autoreleasepool 块替代 NSAutoreleasePool。<br>        不能使用区域（NSZone）。<br>        对象型变量不能作为 C 语言结构体（struct/union）的成员。<br>        显式转换 id 和 void *。</p>
+<p>##4.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？<br> iOS ARC 内存管理要点<br><a href="http://www.samirchen.com/ios-arc/" target="_blank" rel="noopener">http://www.samirchen.com/ios-arc/</a></p>
+<p>在访问 __weak 修饰的变量时，实际上必定会访问注册到 Autorelease Pool 的对象。如下来年两段代码是相同的效果：</p>
+<pre><code>1.    id __weak obj1 = obj0;
+2.    NSLog(@&quot;class=%@&quot;, [obj1 class]);
+3.    // 等同于：
+4.    id __weak obj1 = obj0;
+5.    id __autoreleasing tmp = obj1;
+6.    NSLog(@&quot;class=%@&quot;, [tmp class]);
+</code></pre><p>为什么会这样呢？因为 __weak 修饰符只持有对象的弱引用，而在访问对象的过程中，该对象有可能被废弃，如果把被访问的对象注册到 Autorelease Pool 中，就能保证 Autorelease Pool 被销毁前对象是存在的。</p>
+<pre><code>在 Delegate 关系中防止强引用循环。在 ARC 特性下，通常我们应该设置 Delegate 属性为 weak 的。但是这里有一个疑问，我们常用到的 UITableView 的 delegate 属性是这样定义的： @property (nonatomic, assign) id&lt;UITableViewDelegate&gt; delegate;，为什么用的修饰符是 assign 而不是 weak？其实这个 assign 在 ARC 中意义等同于 __unsafe_unretaied（后面会讲到），它是为了在 ARC 特性下兼容 iOS4 及更低版本来实现弱引用机制。一般情况下，你应该尽量使用 weak。
+</code></pre>
       
     </div>
     
@@ -324,15 +339,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/23/RNCall/" rel="next" title="RNCall Native数据交互case">
+                <i class="fa fa-chevron-left"></i> RNCall Native数据交互case
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/12/first/" rel="prev" title="随记">
-                随记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -384,8 +399,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -427,6 +451,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#解题"><span class="nav-number">1.</span> <span class="nav-text">解题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
