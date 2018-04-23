@@ -229,6 +229,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/04/23/RNCall/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="King Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔都漂流">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/23/RNCall/" itemprop="url">RNCall Native数据交互case</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T17:55:12+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#RNCall Native数据交互case<br> 现在线上存在RN Plugin与Native交互时，数据操作的问题。 一部分场景是使用static 缓存数据做后续处理。</p>
+<p>这个版本我在处理房型浮层时，在之前订单详情的处理基础上做了一些优化。</p>
+<p>以房型浮层为例： 我新建一个UIView  CTHotelRNDetailFloatView  将RNView add到此view中 最后add到window中。<br>针对这种场景，与业务交互的是CTHotelRNDetailFloatView这个类。 那么在plugin收到RN事件时， 我们遍历window找到CTHotelRNDetailFloatView</p>
+<ul>
+<li>(CTHotelRNDetailFloatView <em>)findRNFloatView{<br>  UIWindow </em>window = [UIApplication sharedApplication].keyWindow;<br>  for (UIView *view in window.subviews) {<pre><code>if ([view isKindOfClass:[CTHotelRNDetailFloatView class]]) {
+    return (CTHotelRNDetailFloatView *)view;
+}
+</code></pre>  }<br>  return nil;<br>}</li>
+</ul>
+<p>然后 就可以do sth了</p>
+<p>-(void)bookClick:(NSDictionary <em>)parameters callback:(RCTResponseSenderBlock)callback {<br>    CTHotelRNDetailFloatView </em>view = [CRNHotelroomdetailPlugin findRNFloatView];<br>    if (view) {<br>        if (view.delegate &amp;&amp; [view.delegate respondsToSelector:@selector(didFloatViewBooking:)]) {<br>            [view.delegate didFloatViewBooking:view.model];<br>        }<br>    }<br>    [self closeClick:parameters callback:callback];<br>}</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/04/12/first/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -502,7 +632,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
