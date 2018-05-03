@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta name="description" content="##iOS API 版本检查   今天线上发现了使用高版本api导致低版本用户crash的问题。为了避免之后出现类似的错误。查了下资料。发现clang支持了这个功能    1、打开 -Wunguarded-availability 在调用高版本API时候报warning，为避免warning过多而忽视，用 -Werror-unguarded-availability 标记强制编译不过。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇blog">
-<meta property="og:url" content="https://github.com/dev518/2018/04/09/welcome/index.html">
+<meta property="og:title" content="iOS API 版本检查">
+<meta property="og:url" content="https://github.com/dev518/2018/05/03/ApiCheck/index.html">
 <meta property="og:site_name" content="魔都漂流">
-<meta property="og:description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta property="og:description" content="##iOS API 版本检查   今天线上发现了使用高版本api导致低版本用户crash的问题。为了避免之后出现类似的错误。查了下资料。发现clang支持了这个功能    1、打开 -Wunguarded-availability 在调用高版本API时候报warning，为避免warning过多而忽视，用 -Werror-unguarded-availability 标记强制编译不过。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-09T09:57:03.000Z">
+<meta property="og:updated_time" content="2018-05-03T11:53:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇blog">
-<meta name="twitter:description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta name="twitter:title" content="iOS API 版本检查">
+<meta name="twitter:description" content="##iOS API 版本检查   今天线上发现了使用高版本api导致低版本用户crash的问题。为了避免之后出现类似的错误。查了下资料。发现clang支持了这个功能    1、打开 -Wunguarded-availability 在调用高版本API时候报warning，为避免warning过多而忽视，用 -Werror-unguarded-availability 标记强制编译不过。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/dev518/2018/04/09/welcome/"/>
+  <link rel="canonical" href="https://github.com/dev518/2018/05/03/ApiCheck/"/>
 
 
 
 
 
-  <title>第一篇blog | 魔都漂流</title>
+  <title>iOS API 版本检查 | 魔都漂流</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/04/09/welcome/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/05/03/ApiCheck/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="King Wu">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第一篇blog</h1>
+          <h1 class="post-title" itemprop="name headline">iOS API 版本检查</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-09T17:44:03+08:00">
-                2018-04-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T19:51:03+08:00">
+                2018-05-03
               </time>
             
 
@@ -299,8 +299,9 @@
       
 
       
-        <p>这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。</p>
-
+        <p>   ##iOS API 版本检查<br>   今天线上发现了使用高版本api导致低版本用户crash的问题。为了避免之后出现类似的错误。查了下资料。发现clang支持了这个功能<br>    1、打开 -Wunguarded-availability 在调用高版本API时候报warning，为避免warning过多而忽视，用 -Werror-unguarded-availability 标记强制编译不过。<br>    2、针对pod需要在 podspec 中添加compiler_flags。<br>    3、如果代码本身安全（使用了 respondsToSelector: 保护），可以用 #pragma clang diagnostic ignored 的方式压掉警告，或者 @available 直接解决</p>
+<pre><code>http://www.chaisong.xyz/2017/11/12/2017-11-12/
+</code></pre>
       
     </div>
     
@@ -324,15 +325,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/23/interview/" rel="next" title="iOS面试">
+                <i class="fa fa-chevron-left"></i> iOS面试
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/12/first/" rel="prev" title="随记">
-                随记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
