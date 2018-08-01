@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta name="description" content="##flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇blog">
-<meta property="og:url" content="https://github.com/dev518/2018/04/09/welcome/index.html">
+<meta property="og:title" content="flex简单扩展">
+<meta property="og:url" content="https://github.com/dev518/2018/08/01/flex简单扩展/index.html">
 <meta property="og:site_name" content="魔都漂流">
-<meta property="og:description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta property="og:description" content="##flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(c">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-09T09:57:03.000Z">
+<meta property="og:updated_time" content="2018-08-01T10:25:39.120Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇blog">
-<meta name="twitter:description" content="这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。">
+<meta name="twitter:title" content="flex简单扩展">
+<meta name="twitter:description" content="##flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(c">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/dev518/2018/04/09/welcome/"/>
+  <link rel="canonical" href="https://github.com/dev518/2018/08/01/flex简单扩展/"/>
 
 
 
 
 
-  <title>第一篇blog | 魔都漂流</title>
+  <title>flex简单扩展 | 魔都漂流</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/04/09/welcome/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/dev518/2018/08/01/flex简单扩展/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="King Wu">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第一篇blog</h1>
+          <h1 class="post-title" itemprop="name headline">flex简单扩展</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-09T17:44:03+08:00">
-                2018-04-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T18:21:30+08:00">
+                2018-08-01
               </time>
             
 
@@ -299,7 +299,27 @@
       
 
       
-        <p>这是第一篇博客，摸爬滚打地创建了这个博客。之后会坚持在这里更新一些文章。</p>
+        <p> ##flex简单扩展<br> 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下</p>
+<ul>
+<li>(NSArray <em>)properties_apsWithClass:(Class)cls<br>{<br> u_int count;<br> objc_property_t </em>properties  =class_copyPropertyList(cls, &amp;count);<br> NSMutableArray *propertiesArray = [NSMutableArray arrayWithCapacity:count];<br> for (int i = 0; i&lt;count; i++)<br> {<pre><code>const char* propertyName =property_getName(properties[i]);
+[propertiesArray addObject: [NSString stringWithUTF8String: propertyName]];
+</code></pre> }<br> free(properties);<br> return propertiesArray;</li>
+</ul>
+<p>}</p>
+<ul>
+<li>(void)refreshData:(UIView <em>)selectView{<br>  UIView </em>view = selectView.superview;<br>  while (![NSStringFromClass(view.class) hasPrefix:@”CT”] ) {<pre><code>view = view.superview;
+</code></pre>  }<br>  if (view) {<pre><code>NSArray *propsArr = [self properties_apsWithClass:view.class];
+for (NSString *key in propsArr) {
+    UIView *propview = (UIView *)[view valueForKey:key];
+    if (propview &amp;&amp; propview == selectView) {
+        if (selectView) {
+            [CTAlertView showAlertWithMessage:key];
+        }
+    }
+}
+</code></pre>  }<br>}</li>
+</ul>
+<p>核心代码就以上不到几十行，大致思路就是遍历superview直到遍历到自定义类为止。特殊case可能要做一些处理。</p>
 
       
     </div>
@@ -324,15 +344,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/07/devTips/" rel="next" title="iOS开发tips">
+                <i class="fa fa-chevron-left"></i> iOS开发tips
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/12/first/" rel="prev" title="随记">
-                随记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
