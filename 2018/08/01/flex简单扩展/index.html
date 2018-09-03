@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="##flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(c">
+<meta name="description" content="flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(cls">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flex简单扩展">
 <meta property="og:url" content="https://github.com/dev518/2018/08/01/flex简单扩展/index.html">
 <meta property="og:site_name" content="魔都漂流">
-<meta property="og:description" content="##flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(c">
+<meta property="og:description" content="flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(cls">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-01T10:25:39.120Z">
+<meta property="og:updated_time" content="2018-08-02T02:48:09.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flex简单扩展">
-<meta name="twitter:description" content="##flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(c">
+<meta name="twitter:description" content="flex简单扩展 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下  (NSArray )properties_apsWithClass:(Class)cls{ u_int count; objc_property_t properties  =class_copyPropertyList(cls">
 
 
 
@@ -299,7 +299,7 @@
       
 
       
-        <p> ##flex简单扩展<br> 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下</p>
+        <p> flex简单扩展<br> 公司集成了flex作为ui测试工具，在ui调试过程中肯定遇到过找到ui属性名的问题。所以我做了个快速定位ui控件属性名的扩展功能。话不多说，代码如下</p>
 <ul>
 <li>(NSArray <em>)properties_apsWithClass:(Class)cls<br>{<br> u_int count;<br> objc_property_t </em>properties  =class_copyPropertyList(cls, &amp;count);<br> NSMutableArray *propertiesArray = [NSMutableArray arrayWithCapacity:count];<br> for (int i = 0; i&lt;count; i++)<br> {<pre><code>const char* propertyName =property_getName(properties[i]);
 [propertiesArray addObject: [NSString stringWithUTF8String: propertyName]];
